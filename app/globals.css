@@ -24,10 +24,46 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: 'EdgeDB', sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-Light.ttf') format('woff2');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-Regular.ttf') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-Medium.ttf') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-Medium.ttf') format('woff2');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-SemiBold.ttf') format('woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'EdgeDB';
+  src: url('../public/fonts/EdgeDB-Bold.ttf') format('woff2');
+  font-weight: 700;
 }
