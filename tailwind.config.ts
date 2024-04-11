@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 const config: Config = {
   content: [
@@ -20,6 +21,10 @@ const config: Config = {
         serif: ['EdgeDB', ...defaultTheme.fontFamily.serif],
         sans: ['EdgeDB', ...defaultTheme.fontFamily.serif],
       },
+    },
+    colors: {
+      ...colors,
+      primary: '#D92D54',
     },
   },
   plugins: [],
