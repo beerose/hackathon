@@ -45,7 +45,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
-        <div className="mt-[120px] text-textPrimary flex flex-col items-center space-y-2">
+        <div className="mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
           <div className="flex items-center space-x-2">
             <svg
               width="94"
@@ -88,13 +88,13 @@ export default function Home() {
               />
             </svg>
           </div>
-          <span className="text-4xl md:text-7xl tracking-wider font-bold">
+          <span className="text-4xl md:text-8xl tracking-wider font-bold">
             hackathon
           </span>
         </div>
 
         <h3 className="text-primary text-2xl font-bold mb-4 mt-6">Judges</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3">
           <Judge
             img="https://via.placeholder.com/80"
             name="The judge"
@@ -245,7 +245,7 @@ export default function Home() {
                   <div className="relative flex h-6 w-6 flex-none items-center justify-center">
                     <div className="h-1.5 w-1.5 rounded-full bg-primary ring-1 ring-primary" />
                   </div>
-                  <div className="flex flex-col py-0.5 leading-5">
+                  <div className="flex flex-col -my-0.5 leading-5">
                     <span className="text-primary font-semibold text-xl">
                       {activityItem.name}
                     </span>
@@ -291,8 +291,10 @@ export default function Home() {
         </div>
 
         <div className="mt-20 flex items-center flex-col p-6">
-          <h3 className="text-primary text-5xl mb-12 text-center">Why join?</h3>
-          <ul className="list-disc font-opensans text-lg leading-8 text-textBase">
+          <h3 className="text-primary text-5xl mb-12 font-bold text-center">
+            Why join?
+          </h3>
+          <ul className="list-disc list-outside font-opensans text-lg leading-8 text-textBase">
             <li>
               Boost your skills: Take this chance to learn more about building
               Next.js apps with EdgeDB and advance your coding expertise.

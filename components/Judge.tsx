@@ -7,7 +7,7 @@ interface JudgeProps {
 export default function Judge({ img, name, title }: JudgeProps) {
   return (
     <div className="text-white flex flex-col items-center space-y-2">
-      <div className="w-20 h-20 border border-primary rounded-[4px] text-white">
+      <div className="w-24 h-24 border border-primary rounded-[4px] text-white">
         <img
           src={img}
           alt={name}
