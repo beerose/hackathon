@@ -15,16 +15,18 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-    },
-    theme: {
       fontFamily: {
-        serif: ['EdgeDB', ...defaultTheme.fontFamily.serif],
-        sans: ['EdgeDB', ...defaultTheme.fontFamily.serif],
+        opensans: ['var(--openSans)'],
       },
     },
     colors: {
       ...colors,
       primary: '#D92D54',
+      secondary: '#EFE1EC',
+      gray10: '#1A1A1A',
+      textBase: '#BABABA',
+      textSecondaryPrize: '#7352E8',
+      textPrimary: '#EFE1EC',
     },
   },
   plugins: [],

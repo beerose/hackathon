@@ -5,8 +5,8 @@ interface NavbarProps {
 }
 export default function Navbar({ isSignedIn }: NavbarProps) {
   return (
-    <div className="flex space-x-1">
-      <div className="bg-black/80 rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-2xl text-white">
+    <div className="flex space-x-1 text-xl lg:text-2xl">
+      <div className="bg-black rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-white">
         <Link href="/">
           <span className="hover:text-primary cursor-pointer transition-all duration-200">
             <span className="text-primary">/</span>home
