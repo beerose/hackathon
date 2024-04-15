@@ -39,13 +39,12 @@ const timeline = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 leading-8">
-      <div className="fixed z-20">
+    <main className="flex min-h-screen flex-col items-center p-8 leading-8 relative">
+      <div className="fixed z-20 w-full top-0">
         <Navbar isSignedIn={true} />
       </div>
-
       <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
-        <div className="mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
+        <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
           <div className="flex items-center space-x-2">
             <svg
               width="94"
@@ -312,7 +311,7 @@ export default function Home() {
 
         <div className="mt-20 flex flex-col items-center p-6">
           <h3 className="text-primary text-5xl font-bold mb-12">Need help?</h3>
-          <p className="text-lg leading-8 text-textBase font-opensans leading-8">
+          <p className="text-lg leading-8 text-textBase font-opensans">
             If you run into any questions or need a hand with your project,
             don&apos;t worry! Join us on Discord. We have a dedicated hackathon
             channel where you can get support, ask questions, and interact with
