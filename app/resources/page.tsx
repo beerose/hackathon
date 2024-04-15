@@ -30,7 +30,7 @@ const resources = [
 
 export default function Page() {
   return (
-    <div className="md:mt-32 flex items-center flex-col">
+    <div className="mt-20 md:mt-32 flex items-center flex-col">
       <h3 className="text-primary text-5xl font-bold mb-12 text-center">
         Resources
       </h3>
@@ -60,6 +60,27 @@ export default function Page() {
               />
             </Link>
           ))}
+        </div>
+      </div>
+      <h3 className="mt-20 text-primary text-3xl font-bold mb-12 text-center">
+        Example apps
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+        <div className="space-y-4 flex flex-col">
+          <Link href="https://github.com/edgedb/nextjs-edgedb-auth-starter">
+            <Button
+              title="Template: Next.js + Auth"
+              variant="secondary"
+            />
+          </Link>
+        </div>
+        <div className="space-y-4 flex flex-col">
+          <Link href="https://github.com/beerose/edgedb-ai-booking-assistant">
+            <Button
+              title="Demo: Vercel AI SDK"
+              variant="secondary"
+            />
+          </Link>
         </div>
       </div>
     </div>
