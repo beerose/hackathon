@@ -14,11 +14,13 @@ export function Button({ title, variant }: ButtonProps) {
         variant === 'primary'
           ? 'bg-primary text-black'
           : 'bg-transparent text-white border-2 border-textPrimary/20 hover:bg-primary hover:border-primary hover:text-black',
-        'rounded-[1px] flex justify-between items-center space-x-4'
+        'rounded-[1px] flex justify-between items-center space-x-4 text-left'
       )}
     >
       <span>{title}</span>
-      <RightArrow />
+      <div className="h-[12px] w-[12px]">
+        <RightArrow />
+      </div>
     </button>
   )
 }
