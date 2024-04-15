@@ -1,14 +1,22 @@
 import { classNames } from '@/src/utils'
 import { RightArrow } from './RightArrow'
 
-interface ButtonProps {
-  title: string
-  variant?: 'primary' | 'secondary'
-}
+type ButtonProps =
+  | {
+      title: string
+      variant?: 'primary' | 'secondary'
+    }
+  | {
+      title: string
+      variant?: 'primary' | 'secondary'
+      href?: string
+    }
 
-export function Button({ title, variant }: ButtonProps) {
+export function Button({ title, variant, ...rest }: ButtonProps) {
+  const Component = 'href' in rest ? 'a' : 'button'
+
   return (
-    <button
+    <Component
       className={classNames(
         'relative h-16 py-8 px-6 w-full transition-all duration-300 ease-in-out text-bold text-xl',
         variant === 'primary'
@@ -21,6 +29,6 @@ export function Button({ title, variant }: ButtonProps) {
       <div className="h-[12px] w-[12px]">
         <RightArrow />
       </div>
-    </button>
+    </Component>
   )
 }

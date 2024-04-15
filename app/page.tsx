@@ -1,8 +1,8 @@
 import { Button } from '@/components/Button'
 import Judge from '@/components/Judge'
-import Navbar from '@/components/Navbar'
 import PrizeCard from '@/components/PrizeCard'
 import { classNames } from '@/src/utils'
+import Link from 'next/link'
 
 const timeline = [
   {
@@ -108,10 +108,12 @@ export default function Home() {
       </div>
 
       <div className="mt-10">
-        <Button
-          title="Register / log-in"
-          variant="primary"
-        />
+        <Link href="/profile">
+          <Button
+            title="Register / log-in"
+            variant="primary"
+          />
+        </Link>
       </div>
       <p className="hidden md:block text-xl md:text-2xl leading-8 md:leading-10 text-white mt-20 py-10 text-center font-opensans font-normal tracking-wide">
         Join our first Hackathon, an event for developers of all levels to
@@ -173,7 +175,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-20 flex flex-col items-center space-y-8">
+      <div
+        className="mt-20 flex flex-col items-center space-y-8"
+        id="prizes"
+      >
         <h3 className="text-primary text-5xl font-bold mb-1">Prizes</h3>
         <div className="w-1/2 px-2">
           <PrizeCard
@@ -262,25 +267,34 @@ export default function Home() {
           Getting started
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-4">
-            <Button
-              title="Join Discord"
-              variant="secondary"
-            />
-            <Button
-              title="Read the rules"
-              variant="secondary"
-            />
+          <div className="space-y-4 flex flex-col">
+            <a href="https://discord.gg/umUueND6ag">
+              <Button
+                title="Join Discord"
+                variant="secondary"
+                href="https://discord.gg/umUueND6ag"
+              />
+            </a>
+            <Link href="/legal">
+              <Button
+                title="Read the rules"
+                variant="secondary"
+              />
+            </Link>
           </div>
-          <div className="space-y-4">
-            <Button
-              title="Submit your project"
-              variant="secondary"
-            />
-            <Button
-              title="View the prizes"
-              variant="secondary"
-            />
+          <div className="space-y-4 flex flex-col">
+            <Link href="/profile">
+              <Button
+                title="Submit your project"
+                variant="secondary"
+              />
+            </Link>
+            <Link href="#prizes">
+              <Button
+                title="View the prizes"
+                variant="secondary"
+              />
+            </Link>
           </div>
         </div>
       </div>
@@ -322,10 +336,12 @@ export default function Home() {
       </div>
 
       <div className="my-20">
-        <Button
-          title="Register / log-in"
-          variant="primary"
-        />
+        <Link href="/profile">
+          <Button
+            title="Register / log-in"
+            variant="primary"
+          />
+        </Link>
       </div>
     </>
   )
