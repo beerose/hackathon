@@ -21,7 +21,7 @@ export default function Navbar({ isSignedIn }: NavbarProps) {
 
   return (
     <div className="w-full">
-      <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center">
+      <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center shadow-md">
         <div className="bg-black rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-white flex items-center">
           {navigation.map((item) => (
             <Link
