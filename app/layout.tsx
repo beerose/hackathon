@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import './globals.css'
+import Navbar from '@/components/Navbar'
 
 const openSans = Open_Sans({
   weight: '400',
@@ -20,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={openSans.variable}>{children}</body>
+      <body className={openSans.variable}>
+        <main className="flex min-h-screen flex-col items-center p-8 leading-8 relative">
+          <div className="fixed z-20 w-full top-0">
+            <Navbar isSignedIn={true} />
+          </div>
+          <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   )
 }

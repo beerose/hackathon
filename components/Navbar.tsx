@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { XMarkIcon } from '@heroicons/react/20/solid'
 
 import { Disclosure } from '@headlessui/react'
 import { classNames } from '@/src/utils'
@@ -19,11 +18,11 @@ interface NavbarProps {
 }
 export default function Navbar({ isSignedIn }: NavbarProps) {
   const pathname = usePathname()
-  console.log(pathname)
+
   return (
     <div className="w-full">
       <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center">
-        <div className="bg-black rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-white">
+        <div className="bg-black rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-white flex items-center">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -31,12 +30,18 @@ export default function Navbar({ isSignedIn }: NavbarProps) {
             >
               <span className="hover:text-primary cursor-pointer transition-all duration-200">
                 <span className="text-primary">/</span>
-                {item.name}
+                <span
+                  className={
+                    pathname === item.href ? 'text-primary' : 'text-white'
+                  }
+                >
+                  {item.name}
+                </span>
               </span>
             </Link>
           ))}
         </div>
-        <div className="flex items-center bg-black/80 rounded-lg rounded-l-none gap-x-2 shadow-sm py-2 px-5 font-bold text-2xl text-white hover:text-primary cursor-pointer transition-all duration-200">
+        <div className="flex items-center bg-black/80 rounded-lg rounded-l-none gap-x-2 shadow-sm py-2 px-5 font-bold text-white hover:text-primary cursor-pointer transition-all duration-200">
           <div className="rounded-[4px] border-[3px] border-primary w-5 h-5" />
           {isSignedIn ? 'profile' : 'Log in'}
         </div>

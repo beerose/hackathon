@@ -10,7 +10,7 @@ export function Button({ title, variant }: ButtonProps) {
   return (
     <button
       className={classNames(
-        'relative h-16 py-8 px-6 w-full transition-all duration-300 ease-in-out text-bold text-2xl',
+        'relative h-16 py-8 px-6 w-full transition-all duration-300 ease-in-out text-bold text-xl',
         variant === 'primary'
           ? 'bg-primary text-black'
           : 'bg-transparent text-white border-2 border-textPrimary/20 hover:bg-primary hover:border-primary hover:text-black',
