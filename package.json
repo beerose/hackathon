@@ -6,10 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:edgeql": "npx @edgedb/generate edgeql-js",
+    "generate:interfaces": "npx @edgedb/generate interfaces",
+    "generate:all": "pnpm generate:edgeql && pnpm generate:interfaces"
   },
   "dependencies": {
+    "@edgedb/auth-nextjs": "0.2.0-beta.1",
+    "@edgedb/generate": "^0.5.3",
     "@headlessui/react": "^1.7.18",
+    "edgedb": "^1.5.3",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18"
