@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button'
 import Judge from '@/components/Judge'
 import PrizeCard from '@/components/PrizeCard'
+import { auth } from '@/edgedb'
 import { classNames } from '@/src/utils'
 import Link from 'next/link'
 
@@ -37,7 +38,10 @@ const timeline = [
   },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const session = auth.getSession()
+  const signedIn = await session.isSignedIn()
+
   return (
     <>
       <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
@@ -108,12 +112,21 @@ export default function Home() {
       </div>
 
       <div className="mt-10">
-        <Link href="/profile">
-          <Button
-            title="Register / log-in"
-            variant="primary"
-          />
-        </Link>
+        {signedIn ? (
+          <Link href="dashboard">
+            <Button
+              title="Profile"
+              variant="primary"
+            />
+          </Link>
+        ) : (
+          <Link href={auth.getBuiltinUIUrl()}>
+            <Button
+              title="Register / log-in"
+              variant="primary"
+            />
+          </Link>
+        )}
       </div>
       <p className="hidden md:block text-xl md:text-2xl leading-8 md:leading-10 text-white mt-20 py-10 text-center font-opensans font-normal tracking-wide">
         Join our first Hackathon, an event for developers of all levels to

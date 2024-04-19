@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import { auth } from '@/edgedb'
 
 const openSans = Open_Sans({
   weight: '400',
@@ -24,7 +25,10 @@ export default function RootLayout({
       <body className={openSans.variable}>
         <main className="flex min-h-screen flex-col items-center p-8 leading-8 relative">
           <div className="fixed z-20 w-full top-0">
-            <Navbar isSignedIn={true} />
+            <Navbar
+              isSignedIn={true}
+              loginURL={auth.getBuiltinUIUrl()}
+            />
           </div>
           <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
             {children}

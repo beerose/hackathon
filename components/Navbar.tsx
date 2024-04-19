@@ -15,8 +15,9 @@ const navigation = [
 
 interface NavbarProps {
   isSignedIn: boolean
+  loginURL: string
 }
-export default function Navbar({ isSignedIn }: NavbarProps) {
+export default function Navbar({ isSignedIn, loginURL }: NavbarProps) {
   const pathname = usePathname()
 
   return (
@@ -43,7 +44,9 @@ export default function Navbar({ isSignedIn }: NavbarProps) {
         </div>
         <div className="flex items-center bg-black/80 rounded-lg rounded-l-none gap-x-2 shadow-sm py-2 px-5 font-bold text-white hover:text-primary cursor-pointer transition-all duration-200">
           <div className="rounded-[4px] border-[3px] border-primary w-5 h-5" />
-          {isSignedIn ? 'profile' : 'Log in'}
+          <Link href={isSignedIn ? '/profile' : loginURL}>
+            {isSignedIn ? 'profile' : 'Log in'}
+          </Link>
         </div>
       </div>
       <Disclosure
