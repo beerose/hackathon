@@ -30,9 +30,7 @@ export default function RootLayout({
               loginURL={auth.getBuiltinUIUrl()}
             />
           </div>
-          <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
-            {children}
-          </div>
+          {children}
         </main>
       </body>
     </html>
