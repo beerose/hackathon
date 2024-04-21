@@ -1,4 +1,3 @@
-import Navbar from '@/components/Navbar'
 import { auth } from '@/edgedb'
 import { redirect } from 'next/navigation'
 
@@ -22,15 +21,10 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-full">
-      <Navbar
-        isSignedIn={signedIn}
-        loginURL={auth.getBuiltinUIUrl()}
-      />
-
-      <div className="relative isolate px-4 pt-8 sm:px-6 xl:px-16">
+    <div className="min-h-full w-full">
+      <div className="relative isolate px-4 pt-8 sm:px-6 xl:px-12">
         <main>
-          <div className="mx-auto max-w-7xl">{children}</div>
+          <div className="">{children}</div>
         </main>
       </div>
     </div>
