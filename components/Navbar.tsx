@@ -22,8 +22,8 @@ export default function Navbar({ isSignedIn, loginURL }: NavbarProps) {
 
   return (
     <div className="w-full">
-      <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center shadow-md">
-        <div className="bg-black rounded-lg rounded-r-none space-x-4 shadow-sm py-2 px-5 font-bold text-white flex items-center">
+      <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center">
+        <div className="bg-black/70 backdrop-blur-sm rounded-lg rounded-r-none space-x-4 py-2 px-5 font-bold text-white flex items-center">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -42,7 +42,7 @@ export default function Navbar({ isSignedIn, loginURL }: NavbarProps) {
             </Link>
           ))}
         </div>
-        <div className="flex items-center bg-black/80 rounded-lg rounded-l-none gap-x-2 shadow-sm py-2 px-5 font-bold text-white hover:text-primary cursor-pointer transition-all duration-200">
+        <div className="flex items-center bg-black/70 backdrop-blur-sm rounded-lg rounded-l-none gap-x-2 py-2 px-5 font-bold text-white hover:text-primary cursor-pointer transition-all duration-200">
           <div className="rounded-[4px] border-[3px] border-primary w-5 h-5" />
           <Link href={isSignedIn ? '/profile' : loginURL}>
             {isSignedIn ? 'profile' : 'Log in'}
