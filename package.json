@@ -15,10 +15,14 @@
     "@edgedb/auth-nextjs": "0.2.0-beta.1",
     "@edgedb/generate": "^0.5.3",
     "@headlessui/react": "^1.7.18",
+    "@react-three/drei": "^9.105.4",
+    "@react-three/fiber": "^8.16.2",
+    "@types/three": "^0.163.0",
     "edgedb": "^1.5.3",
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.163.0"
   },
   "devDependencies": {
     "@types/node": "^20",

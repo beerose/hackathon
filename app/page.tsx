@@ -3,7 +3,10 @@ import Judge from '@/components/Judge'
 import PrizeCard from '@/components/PrizeCard'
 import { auth } from '@/edgedb'
 import { classNames } from '@/src/utils'
+import Three from '@/components/index/env'
 import Link from 'next/link'
+import {LeftHand, RightHand} from "@/components/index/hands"
+import HackathonLogo from '@/components/hlogo'
 
 const timeline = [
   {
@@ -38,11 +41,12 @@ const timeline = [
   },
 ]
 
+
 export default async function Home() {
   const session = auth.getSession()
   const signedIn = await session.isSignedIn()
 
-  return (
+  return (<><Three/>
     <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
       <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
         <div className="flex items-center space-x-2">
@@ -87,9 +91,15 @@ export default async function Home() {
             />
           </svg>
         </div>
-        <span className="text-4xl md:text-8xl tracking-wider font-bold">
-          hackathon
-        </span>
+
+        <div>
+          <HackathonLogo className="scale-75 md:scale-100"/>
+          <div className="relative" style={{width: '0', height: '0', left: '-310px', top: '-280px'}}>
+            <div className="absolute z-0" style={{width: '430px', height: '250px',}}>
+              <LeftHand />
+            </div>
+          </div>
+        </div>
       </div>
 
       <h3 className="text-primary text-2xl font-bold mb-4 mt-6">Judges</h3>
@@ -109,6 +119,12 @@ export default async function Home() {
           name="Guillermo Rauch"
           title="CEO Vercel"
         />
+
+        <div className="relative" style={{width: '0', height: '0', left: '380px', top: '-80px'}}>
+          <div className="absolute z-0" style={{width: '430px', height: '250px',}}>
+            <RightHand />
+          </div>
+        </div>
       </div>
 
       <div className="mt-10">
@@ -358,5 +374,5 @@ export default async function Home() {
         </Link>
       </div>
     </div>
-  )
+  </>)
 }
