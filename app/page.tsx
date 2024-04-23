@@ -43,7 +43,7 @@ export default async function Home() {
   const signedIn = await session.isSignedIn()
 
   return (
-    <>
+    <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
       <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
         <div className="flex items-center space-x-2">
           <svg
@@ -193,7 +193,7 @@ export default async function Home() {
         id="prizes"
       >
         <h3 className="text-primary text-5xl font-bold mb-1">Prizes</h3>
-        <div className="w-1/2 px-2">
+        <div className="md:w-1/2 w-full px-2">
           <PrizeCard
             prize={5000}
             title="1st prize"
@@ -356,6 +356,6 @@ export default async function Home() {
           />
         </Link>
       </div>
-    </>
+    </div>
   )
 }
