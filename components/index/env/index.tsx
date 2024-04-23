@@ -1,15 +1,15 @@
 'use client';
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { PerformanceMonitor, StatsGl } from '@react-three/drei'
 // import Environment from "./env";
 import {PatchedView} from "../view";
 import {useWebgl} from "../hasWebgl";
 
 type ThreeOptions = {
-  eventSource?: React.MutableRefObject<HTMLElement>
+  eventSource?: MutableRefObject<HTMLElement>
 }
 
 function ThreeCore({eventSource}: ThreeOptions) {
@@ -18,17 +18,24 @@ function ThreeCore({eventSource}: ThreeOptions) {
 
   return <>
     <Canvas
-          className="fixed top-0 left-0 right-0 z-0"
+          className="fixed top-0 left-0 right-0"
           eventSource={eventSource}
           eventPrefix="client"
           gl={{antialias: false}}
-          style={{height: '115vh', position: 'fixed', pointerEvents: 'none'}}
+          style={{
+            height: '115vh',
+            position: 'fixed',
+            pointerEvents: 'none',
+            zIndex: '-2'
+          }}
           dpr={maxDpr}
           camera={{ fov: 20, near: 0.1, far: 1000, position: [0, 0, 25] }}
         >
 
       {/* <Environment lowPerf={lowPerf} /> */}
       <PatchedView.Port />
+
+      <CameraControls />
 
       <StatsGl />
 
@@ -47,11 +54,49 @@ function ThreeCore({eventSource}: ThreeOptions) {
   </>
 }
 
+function CameraControls() {
+
+  const width = useRef<number>(window.innerWidth);
+  const height = useRef<number>(window.innerHeight);
+  const posX = useRef<number>(0);
+  const posY = useRef<number>(0);
+
+  useEffect(() => {
+    const onMove = (e: any) => {
+      posX.current = e.pageX / width.current - 0.5;
+      posY.current = e.pageY / height.current - 0.5;
+    };
+
+    document.removeEventListener('mousemove', onMove);
+    document.addEventListener('mousemove', onMove, {passive: true});
+
+    const onResize = () => {
+      width.current = window.innerWidth;
+      height.current = window.innerHeight;
+    };
+
+    window.removeEventListener('resize', onResize);
+    window.addEventListener('resize', onResize, {passive: true});
+
+    return () => {
+      document.removeEventListener('mousemove', onMove);
+      window.removeEventListener('resize', onResize);
+    }
+  }, []);
+
+  useFrame(({camera}) => {
+    camera.position.x = posX.current / 2.;
+    camera.position.y = -posY.current / 2.;
+  });
+
+  return <group></group>
+}
+
 function Three({eventSource}: ThreeOptions) {
   const hasWebgl = useWebgl();
 
   return <>
-    {hasWebgl ? <ThreeCore eventSource={eventSource} /> : null}
+    {hasWebgl ? <ThreeCore /> : null}
   </>
 }
 

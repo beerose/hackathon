@@ -47,7 +47,7 @@ export default async function Home() {
   const signedIn = await session.isSignedIn()
 
   return (<><Three/>
-    <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
+    <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12">
       <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
         <div className="flex items-center space-x-2">
           <svg
