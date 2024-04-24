@@ -8,11 +8,7 @@ module default {
     ))
   );
 
-  type User {
-    required identity: ext::auth::Identity;
-    required username: str;
-    email: str;
-  
+  abstract type Timestamped {
     created: datetime {
       rewrite insert using (datetime_of_statement());
     }
@@ -22,30 +18,29 @@ module default {
     }
   }
 
-  type Project {
+  type User extending Timestamped {
+    required identity: ext::auth::Identity;
+    required username: str;
+    required email: str;
+  }
+
+  type Project extending Timestamped {
     required name: str;
     required created_by: User {
       default := global current_user;
     }
 
     required description: str;
-    required yt_link: str;
-    required github_link: str;
+    required yt_video_id: str;
+    required github_repo: str {
+      constraint exclusive;
+    };
     required website_link: str;
-    required image_link: str;
     tags: array<str>;
 
-    required multi creators: User {
-      default := {global current_user};
-    }
+    multi other_team_members: User;
 
-    created: datetime {
-      rewrite insert using (datetime_of_statement());
-    }
-    updated: datetime {
-      rewrite insert using (datetime_of_statement());
-      rewrite update using (datetime_of_statement());
-    }
+    required creators := {.created_by, .other_team_members};
 
     access policy creators_has_full_access
       allow all
