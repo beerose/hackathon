@@ -204,10 +204,10 @@ function Container({ visible = true, canvasSize, scene, index, children, frames,
 }
 
 const CanvasView = React.forwardRef(
-  (
+  function CanvasView(
     { track, visible = true, index = 1, id, style, className, frames = Infinity, children, skipScissor, ...props }: ViewProps,
     fref: React.ForwardedRef<Group>
-  ) => {
+  ) {
     const rect = React.useRef<DOMRect>(null!)
     const { size, scene } = useThree()
     const [virtualScene] = React.useState(() => new Scene())
@@ -269,7 +269,7 @@ const CanvasView = React.forwardRef(
 )
 
 const HtmlView = React.forwardRef(
-  (
+  function HtmlView(
     {
       as: El = 'div',
       id,
@@ -284,7 +284,7 @@ const HtmlView = React.forwardRef(
       ...props
     }: ViewProps,
     fref: React.ForwardedRef<HTMLElement>
-  ) => {
+  ) {
     const uuid = React.useId()
     const ref = React.useRef<HTMLElement>(null!)
     React.useImperativeHandle(fref, () => ref.current)
@@ -306,7 +306,7 @@ export type ViewportProps = { Port: () => JSX.Element } & React.ForwardRefExotic
   ViewProps & React.RefAttributes<HTMLElement | Group>
 >
 
-export const PatchedView = React.forwardRef((props: ViewProps, fref: React.ForwardedRef<HTMLElement | Group>) => {
+export const PatchedView = React.forwardRef(function PatchedView(props: ViewProps, fref: React.ForwardedRef<HTMLElement | Group>) {
   // If we're inside a canvas we should be able to access the context store
   const store = React.useContext(context)
   // If that's not the case we render a tunnel
@@ -315,4 +315,4 @@ export const PatchedView = React.forwardRef((props: ViewProps, fref: React.Forwa
   else return <CanvasView ref={fref as unknown as React.ForwardedRef<Group>} {...props} />
 }) as ViewportProps
 
-PatchedView.Port = () => <tracked.Out />
+PatchedView.Port = function PatchedViewPort() { return <tracked.Out /> }
