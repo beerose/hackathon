@@ -134,18 +134,13 @@ function Environment({lowPerf}: EnvironmentProps) {
         uScene: { value: _target.texture },
         uOpacity: { value: 0 },
 
-        uRedOffset: {
-          value: 10.0,
-        },
-        uGreenOffset: {
-          value: 5.0,
-        },
-        uBlueOffset: {
-          value: 3.0,
-        },
-        uIntensity: {
-          value: 10.0,
-        },
+        uDistortion: { value: 0.3 },
+        uDistortion2: { value: 0.05 },
+        uSpeed: { value: 0.2 },
+        uRedOffset: { value: 7.0, },
+        uGreenOffset: { value: 3.3, },
+        uBlueOffset: { value: 3.0, },
+        uIntensity: { value: 5.0, },
       },
     });
     bgMaterial.current = _bgMaterial;

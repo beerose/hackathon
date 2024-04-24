@@ -10,7 +10,7 @@ import {useWebgl} from "../hasWebgl";
 
 function ThreeCore() {
   const nativeDpr = typeof window == 'undefined' ? 1 : window.devicePixelRatio;
-  const maxDpr = Math.min(nativeDpr, 2.);
+  const maxDpr = Math.min(nativeDpr, 1.);
 
   return <>
     <Canvas
