@@ -32,7 +32,7 @@ export default async function Projects() {
             </button>
           </Link>
           {projects.map((project) => (
-            <Link href={`/profile/project/${project.id}`}>
+            <Link key={project.id} href={`/profile/project/${project.id}`}>
               <div>{project.name}</div>
             </Link>
           ))}

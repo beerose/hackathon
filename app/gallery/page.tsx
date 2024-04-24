@@ -1,31 +1,39 @@
-import ProjectCard from '@/components/ProjectCard'
+import ProjectCard from "@/components/ProjectCard";
 
 const sample = [
   {
-    title: 'Project 1',
-    description: 'Description 1',
-    teamMembers: ['Member 1', 'Member 2'],
-    image: 'https://via.placeholder.com/150',
+    id: "1",
+    title: "Project 1",
+    description: "Description 1",
+    teamMembers: ["Member 1", "Member 2"],
+    image: "https://via.placeholder.com/150",
+    ytUrl: "",
   },
   {
-    title: 'Project 2',
-    description: 'Description 2',
-    teamMembers: ['Member 1'],
-    image: 'https://via.placeholder.com/150',
+    id: "2",
+    title: "Project 2",
+    description: "Description 2",
+    teamMembers: ["Member 1"],
+    image: "https://via.placeholder.com/150",
+    ytUrl: "",
   },
   {
-    title: 'Project 3',
-    description: 'Description 3',
-    teamMembers: ['Member 1', 'Member 2'],
-    image: 'https://via.placeholder.com/150',
+    id: "3",
+    title: "Project 3",
+    description: "Description 3",
+    teamMembers: ["Member 1", "Member 2"],
+    image: "https://via.placeholder.com/150",
+    ytUrl: "",
   },
   {
-    title: 'Project 4',
-    description: 'Description 4',
-    teamMembers: ['Member 1', 'Member 2'],
-    image: 'https://via.placeholder.com/150',
+    id: "4",
+    title: "Project 4",
+    description: "Description 4",
+    teamMembers: ["Member 1", "Member 2"],
+    image: "https://via.placeholder.com/150",
+    ytUrl: "",
   },
-]
+];
 
 export default function Page() {
   return (
@@ -37,13 +45,10 @@ export default function Page() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {sample.map((project) => (
-            <ProjectCard
-              project={project}
-              key={project.title}
-            />
+            <ProjectCard project={project} key={project.id} />
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }

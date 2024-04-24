@@ -44,6 +44,12 @@ importers:
       three:
         specifier: ^0.163.0
         version: 0.163.0
+      three-stdlib:
+        specifier: ^2.29.6
+        version: 2.29.6(three@0.163.0)
+      tunnel-rat:
+        specifier: ^0.1.2
+        version: 0.1.2(@types/react@18.2.77)(react@18.2.0)
     devDependencies:
       '@types/node':
         specifier: ^20
