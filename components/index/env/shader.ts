@@ -70,7 +70,6 @@ void main() {
   vec2 uv = gl_FragCoord.xy / uResolution.xy;
 
   float noise = max(0.0, snoise(vec2(uTime, uv.y * 0.02)) - 0.3) * uDistortion;
-  noise += (snoise(vec2(uTime * 1.0 * uSpeed, uv.y * 0.02)) - 0.5) * uDistortion2;
 
   float x = 1.;
   if (floor(mod((gl_FragCoord.y + sin(mod(uTime, TAU)) * 100.) * 0.01, 3.0)) == 0.0) {
@@ -79,9 +78,10 @@ void main() {
     // return;
   }
 
-  float rPos =  - noise * noise * 0.25 * x;
-  float gPos =  - noise * noise * 0.11 * x;
-  float bPos =  - noise * noise * 0.01 * x;
+  x *= -noise * noise * 0.25;
+  float rPos = x;
+  float gPos = x * 0.5;
+  float bPos = x * 0.1;
 
   float rOffset = 0.001 * uRedOffset * uIntensity;
   float gOffset = 0.001 * uGreenOffset * uIntensity;
