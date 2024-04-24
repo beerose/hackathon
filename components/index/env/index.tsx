@@ -4,23 +4,17 @@ import {useState, useEffect, useRef} from 'react';
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { PerformanceMonitor, StatsGl } from '@react-three/drei'
-// import Environment from "./env";
+import Environment from "./env";
 import {PatchedView} from "../view";
 import {useWebgl} from "../hasWebgl";
 
-type ThreeOptions = {
-  eventSource?: MutableRefObject<HTMLElement>
-}
-
-function ThreeCore({eventSource}: ThreeOptions) {
+function ThreeCore() {
   const nativeDpr = typeof window == 'undefined' ? 1 : window.devicePixelRatio;
   const maxDpr = Math.min(nativeDpr, 2.);
 
   return <>
     <Canvas
           className="fixed top-0 left-0 right-0"
-          eventSource={eventSource}
-          eventPrefix="client"
           gl={{antialias: false}}
           style={{
             height: '115vh',
@@ -32,7 +26,7 @@ function ThreeCore({eventSource}: ThreeOptions) {
           camera={{ fov: 20, near: 0.1, far: 1000, position: [0, 0, 25] }}
         >
 
-      {/* <Environment lowPerf={lowPerf} /> */}
+      <Environment lowPerf={false} />
       <PatchedView.Port />
 
       <CameraControls />
@@ -92,7 +86,7 @@ function CameraControls() {
   return <group></group>
 }
 
-function Three({eventSource}: ThreeOptions) {
+function Three() {
   const hasWebgl = useWebgl();
 
   return <>
