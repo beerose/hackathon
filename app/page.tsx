@@ -192,11 +192,11 @@ export default async function Home() {
                 Submissions
               </h4>
               <div>
-                <p className="font-opensans text-base text-textBase leading-8">
+                <p className="text-base text-textBase font-sans leading-8">
                   You will have <b>two weeks</b> to complete your project and
                   submit:
                 </p>
-                <ul className="list-disc list-inside text-textBase">
+                <ul className="list-disc list-inside text-textBase font-sans">
                   <li>
                     a <span className="text-primary">repo URL</span>,
                   </li>
