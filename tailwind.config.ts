@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 const config: Config = {
@@ -22,8 +21,12 @@ const config: Config = {
     colors: {
       ...colors,
       primary: '#D92D54',
-      secondary: '#EFE1EC',
+      primaryHover: '#FF1348',
+      secondary: '#808080',
       gray10: '#1A1A1A',
+      gray14: '#242424',
+      gray30: '#4D4D4D',
+      gray50: '#808080',
       textBase: '#BABABA',
       textSecondaryPrize: '#7352E8',
       textPrimary: '#EFE1EC',

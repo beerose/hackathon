@@ -1,8 +1,13 @@
-import { Button } from '@/components/Button'
-import Judge from '@/components/Judge'
-import Navbar from '@/components/Navbar'
-import PrizeCard from '@/components/PrizeCard'
-import { classNames } from '@/src/utils'
+import { Button } from "@/components/Button";
+import Judge from "@/components/Judge";
+import PrizeCard from "@/components/PrizeCard";
+import { auth } from "@/edgedb";
+import { classNames } from "@/src/utils";
+import Three from "@/components/index/env";
+import Link from "next/link";
+import { LeftHand, RightHand } from "@/components/index/Hands";
+import HackathonLogo from "@/components/hlogo";
+import { SigninError } from "@/components/SigninError";
 
 const timeline = [
   {
@@ -12,40 +17,40 @@ const timeline = [
   },
   {
     id: 2,
-    name: 'Development days',
-    date: '13/04/2024  — 29/04/2024',
+    name: "Development days",
+    date: "13/04/2024  — 29/04/2024",
   },
   {
     id: 3,
-    name: 'Submission deadline',
-    date: '29/04/2024 12 am PST',
+    name: "Submission deadline",
+    date: "29/04/2024 12 am PST",
   },
   {
     id: 4,
-    name: 'Voting',
-    date: '30/04/2024 — 10/05/2024',
+    name: "Voting",
+    date: "30/04/2024 — 10/05/2024",
   },
   {
     id: 5,
-    name: 'Results announcement',
-    date: '10/05/2024',
+    name: "Results announcement",
+    date: "10/05/2024",
   },
   {
     id: 6,
-    name: 'Summary event',
-    date: '12/05/2024',
+    name: "Summary event",
+    date: "12/05/2024",
   },
-]
+];
 
-export default function Home() {
+export default async function Home() {
+  const session = auth.getSession();
+  const signedIn = await session.isSignedIn();
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 leading-8">
-      <div className="fixed z-20">
-        <Navbar isSignedIn={true} />
-      </div>
-
-      <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12 z-10">
-        <div className="mt-[120px] text-textPrimary flex flex-col items-center space-y-2">
+    <>
+      <Three />
+      <div className="flex flex-col items-center md:w-10/12 lg:w-8/12 xl:w-6/12">
+        <div className="mt-[120px] md:mt-[200px] text-textPrimary flex flex-col items-center space-y-2">
           <div className="flex items-center space-x-2">
             <svg
               width="94"
@@ -55,8 +60,8 @@ export default function Home() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M79.6184 13.7917C79.6184 20.3318 77.0175 21.504 74.1106 21.504H67.9296V6.07936H74.1106C77.0175 6.07936 79.6184 7.25164 79.6184 13.7917ZM76.4669 13.7924C76.4669 9.22669 75.0899 9.01074 73.101 9.01074H71.1733V18.574H73.101C75.0899 18.574 76.4669 18.3581 76.4669 13.7924ZM43.7254 21.504V6.07936H53.4559V9.01005H46.9689V12.1567H51.8647V15.0565H46.9689V18.5734H53.4559V21.504H43.7254ZM58.7498 28H61.9544V0H58.7498V28ZM86.1046 14.6566V18.5745H88.7973C90.4802 18.5745 90.9086 17.4639 90.9086 16.631C90.9086 15.9831 90.6026 14.6566 88.3077 14.6566H86.1046ZM86.1046 9.01074V11.9414H88.3077C89.5623 11.9414 90.2966 11.3861 90.2966 10.4607C90.2966 9.53518 89.5623 9.01074 88.3077 9.01074H86.1046ZM82.862 6.07936H89.1042C92.3783 6.07936 93.3574 8.39306 93.3574 10.0589C93.3574 11.6014 92.3783 12.712 91.7051 13.0205C93.6634 13.9768 94 15.9203 94 16.9075C94 18.2032 93.3574 21.504 89.1042 21.504H82.862V6.07936ZM25.0915 13.7917C25.0915 20.3318 22.4906 21.504 19.5837 21.504H13.4027V6.07936H19.5837C22.4906 6.07936 25.0915 7.25164 25.0915 13.7917ZM34.6378 18.6981C36.2902 18.6981 37.1469 18.1428 37.4529 17.7726V16.0759H34.8214V13.4229H40.0538V19.5619C39.5948 20.2714 37.0857 21.6597 34.7908 21.6597C31.0271 21.6597 27.8449 20.1789 27.8449 13.6388C27.8449 7.09876 31.0577 5.92649 33.9646 5.92649C38.5239 5.92649 39.656 8.33274 40.0232 10.4613L37.3305 11.0783C37.1775 10.0912 36.3208 8.85718 34.3624 8.85718C32.3735 8.85718 30.9965 9.07312 30.9965 13.6388C30.9965 18.2045 32.4347 18.6981 34.6378 18.6981ZM21.9395 13.7924C21.9395 9.22669 20.5625 9.01074 18.5736 9.01074H16.6459V18.574H18.5736C20.5625 18.574 21.9395 18.3581 21.9395 13.7924ZM0 21.504V6.07936H9.73044V9.01005H3.24348V12.1567H8.1393V15.0565H3.24348V18.5734H9.73044V21.504H0Z"
                 fill="#EFE1EC"
               />
@@ -69,8 +74,8 @@ export default function Home() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M0.756637 0.756638C1.76549 -0.252213 3.40116 -0.252213 4.41001 0.756638L16 12.3466L27.59 0.756638C28.5988 -0.252213 30.2345 -0.252213 31.2434 0.756638C32.2522 1.76549 32.2522 3.40116 31.2434 4.41001L19.6534 16L31.2434 27.59C32.2522 28.5989 32.2522 30.2345 31.2434 31.2434C30.2345 32.2522 28.5988 32.2522 27.59 31.2434L16 19.6534L4.41001 31.2434C3.40116 32.2522 1.76549 32.2522 0.756637 31.2434C-0.252212 30.2345 -0.252212 28.5988 0.756637 27.59L12.3467 16L0.756637 4.41001C-0.252212 3.40116 -0.252212 1.76549 0.756637 0.756638Z"
                 fill="#D92D54"
               />
@@ -88,35 +93,67 @@ export default function Home() {
               />
             </svg>
           </div>
-          <span className="text-4xl md:text-7xl tracking-wider font-bold">
-            hackathon
-          </span>
+
+          <div>
+            <HackathonLogo className="scale-75 md:scale-100" />
+            <div
+              className="relative"
+              style={{ width: "0", height: "0", left: "-330px", top: "-280px" }}
+            >
+              <div
+                className="absolute z-0"
+                style={{ width: "510px", height: "290px" }}
+              >
+                <LeftHand />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <h3 className="text-primary text-2xl font-bold mb-4 mt-6">Judges</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h3 className="text-primary text-2xl font-bold mb-3 mt-10">Judges</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-5">
           <Judge
-            img="https://via.placeholder.com/80"
-            name="The judge"
-            title="CEO"
+            url="https://twitter.com/cyen"
+            img="/photos/christine.jpg"
+            name="Christine Yen"
+            title="Honeycomb.io, CEO"
           />
           <Judge
-            img="https://via.placeholder.com/80"
-            name="The Browne"
-            title="CEO ping.gg"
-          />
-          <Judge
-            img="https://via.placeholder.com/80"
+          url="https://twitter.com/rauchg"
+            img="/photos/guillermo.jpg"
             name="Guillermo Rauch"
-            title="CEO Vercel"
+            title="Vercel, CEO"
           />
+          <Judge
+            url="https://twitter.com/t3dotgg"
+            img="/photos/theo.jpg"
+            name="Theo Browne"
+            title="T3, CEO"
+          />
+
+          <div
+            className="relative"
+            style={{ width: "0", height: "0", left: "360px", top: "-80px" }}
+          >
+            <div
+              className="absolute z-0"
+              style={{ width: "510px", height: "290px" }}
+            >
+              <RightHand />
+            </div>
+          </div>
         </div>
 
         <div className="mt-10">
-          <Button
-            title="Register / log-in"
-            variant="primary"
-          />
+          {signedIn ? (
+            <Link href="/profile">
+              <Button title="Profile" variant="primary" />
+            </Link>
+          ) : (
+            <Link href={auth.getBuiltinUIUrl()}>
+              <Button title="Register / log-in" variant="primary" angled/>
+            </Link>
+          )}
         </div>
         <p className="hidden md:block text-xl md:text-2xl leading-8 md:leading-10 text-white mt-20 py-10 text-center font-opensans font-normal tracking-wide">
           Join our first Hackathon, an event for developers of all levels to
@@ -154,15 +191,17 @@ export default function Home() {
               <h4 className="text-primary text-2xl font-bold mb-4">
                 Submissions
               </h4>
-              <p className="font-opensans text-base text-textBase leading-8">
-                You will have <b>two weeks</b> to complete your project and
-                submit:
-                <ul className="list-disc list-inside">
+              <div>
+                <p className="text-base text-textBase font-sans leading-8">
+                  You will have <b>two weeks</b> to complete your project and
+                  submit:
+                </p>
+                <ul className="list-disc list-inside text-textBase font-sans">
                   <li>
                     a <span className="text-primary">repo URL</span>,
                   </li>
                   <li>
-                    a deployed{' '}
+                    a deployed{" "}
                     <span className="text-primary">Vercel app link</span>,
                   </li>
                   <li>
@@ -173,31 +212,19 @@ export default function Home() {
                     how your project uses EdgeDB.
                   </li>
                 </ul>
-              </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-center space-y-8">
+        <div className="mt-20 flex flex-col items-center space-y-8" id="prizes">
           <h3 className="text-primary text-5xl font-bold mb-1">Prizes</h3>
-          <div className="w-1/2 px-2">
-            <PrizeCard
-              prize={5000}
-              title="1st prize"
-              variant="main"
-            />
+          <div className="md:w-1/2 w-full px-2">
+            <PrizeCard prize={5000} title="1st prize" variant="main" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            <PrizeCard
-              prize={3000}
-              title="2nd prize"
-              variant="secondary"
-            />
-            <PrizeCard
-              prize={1000}
-              title="3rd prize"
-              variant="secondary"
-            />
+            <PrizeCard prize={3000} title="2nd prize" variant="secondary" />
+            <PrizeCard prize={1000} title="3rd prize" variant="secondary" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
             <PrizeCard
@@ -219,21 +246,15 @@ export default function Home() {
           <h3 className="text-primary text-5xl font-bold mb-14 text-center">
             Timeline
           </h3>
-          <ul
-            role="list"
-            className="space-y-16"
-          >
+          <ul role="list" className="space-y-16">
             {timeline.map((activityItem, activityItemIdx) => (
-              <li
-                key={activityItem.id}
-                className="relative flex gap-x-4"
-              >
+              <li key={activityItem.id} className="relative flex gap-x-4">
                 <div
                   className={classNames(
                     activityItemIdx === timeline.length - 1
-                      ? 'h-16'
-                      : '-bottom-16',
-                    'absolute left-0 top-6 flex w-6 justify-center'
+                      ? "h-16"
+                      : "-bottom-16",
+                    "absolute left-0 top-6 flex w-6 justify-center"
                   )}
                 >
                   {activityItemIdx !== timeline.length - 1 && (
@@ -245,7 +266,7 @@ export default function Home() {
                   <div className="relative flex h-6 w-6 flex-none items-center justify-center">
                     <div className="h-1.5 w-1.5 rounded-full bg-primary ring-1 ring-primary" />
                   </div>
-                  <div className="flex flex-col py-0.5 leading-5">
+                  <div className="flex flex-col -my-0.5 leading-5">
                     <span className="text-primary font-semibold text-xl">
                       {activityItem.name}
                     </span>
@@ -267,32 +288,30 @@ export default function Home() {
             Getting started
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <Button
-                title="Join Discord"
-                variant="secondary"
-              />
-              <Button
-                title="Read the rules"
-                variant="secondary"
-              />
+            <div className="space-y-4 flex flex-col">
+              <a href="https://discord.gg/umUueND6ag">
+                <Button angled title="Join Discord" variant="secondary" />
+              </a>
+              <Link href="/legal">
+                <Button title="Read the rules" variant="secondary" />
+              </Link>
             </div>
-            <div className="space-y-4">
-              <Button
-                title="Submit your project"
-                variant="secondary"
-              />
-              <Button
-                title="View the prizes"
-                variant="secondary"
-              />
+            <div className="space-y-4 flex flex-col">
+              <Link href="/profile">
+                <Button title="Submit your project" variant="secondary" />
+              </Link>
+              <Link href="#prizes">
+                <Button title="View the prizes" variant="secondary" />
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="mt-20 flex items-center flex-col p-6">
-          <h3 className="text-primary text-5xl mb-12 text-center">Why join?</h3>
-          <ul className="list-disc font-opensans text-lg leading-8 text-textBase">
+          <h3 className="text-primary text-5xl mb-12 font-bold text-center">
+            Why join?
+          </h3>
+          <ul className="list-disc list-outside font-opensans text-lg leading-8 text-textBase">
             <li>
               Boost your skills: Take this chance to learn more about building
               Next.js apps with EdgeDB and advance your coding expertise.
@@ -310,27 +329,25 @@ export default function Home() {
 
         <div className="mt-20 flex flex-col items-center p-6">
           <h3 className="text-primary text-5xl font-bold mb-12">Need help?</h3>
-          <p className="text-lg leading-8 text-textBase font-opensans leading-8">
+          <p className="text-lg leading-8 text-textBase font-opensans">
             If you run into any questions or need a hand with your project,
             don&apos;t worry! Join us on Discord. We have a dedicated hackathon
             channel where you can get support, ask questions, and interact with
-            other participants and our team.{' '}
-            <a
-              href="#"
-              className="text-primary"
-            >
+            other participants and our team.{" "}
+            <a href="#" className="text-primary">
               Ask&nbsp;a&nbsp;question&nbsp;on&nbsp;our&nbsp;Discord.
             </a>
           </p>
         </div>
 
         <div className="my-20">
-          <Button
-            title="Register / log-in"
-            variant="primary"
-          />
+          <Link href="/profile">
+            <Button title="Register / log-in" variant="primary" />
+          </Link>
         </div>
       </div>
-    </main>
-  )
+
+      <SigninError />
+    </>
+  );
 }
