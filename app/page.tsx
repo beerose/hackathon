@@ -94,8 +94,8 @@ export default async function Home() {
 
         <div>
           <HackathonLogo className="scale-75 md:scale-100"/>
-          <div className="relative" style={{width: '0', height: '0', left: '-310px', top: '-280px'}}>
-            <div className="absolute z-0" style={{width: '430px', height: '250px',}}>
+          <div className="relative" style={{width: '0', height: '0', left: '-330px', top: '-280px'}}>
+            <div className="absolute z-0" style={{width: '490px', height: '280px',}}>
               <LeftHand />
             </div>
           </div>
@@ -120,8 +120,8 @@ export default async function Home() {
           title="CEO Vercel"
         />
 
-        <div className="relative" style={{width: '0', height: '0', left: '380px', top: '-80px'}}>
-          <div className="absolute z-0" style={{width: '430px', height: '250px',}}>
+        <div className="relative" style={{width: '0', height: '0', left: '360px', top: '-80px'}}>
+          <div className="absolute z-0" style={{width: '490px', height: '280px',}}>
             <RightHand />
           </div>
         </div>

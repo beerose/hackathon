@@ -79,8 +79,8 @@ function CameraControls() {
   }, []);
 
   useFrame(({camera}) => {
-    camera.position.x = posX.current / 2.;
-    camera.position.y = -posY.current / 2.;
+    camera.position.x = posX.current;
+    camera.position.y = -posY.current;
   });
 
   return <group></group>
