@@ -15,7 +15,7 @@ export default function Page() {
           <p className="mb-4">
             NO PURCHASE OR PAYMENT NECESSARY TO ENTER OR WIN. MAKING A PURCHASE FOR ANY EDGEDB SERVICES
             DOES NOT INCREASE YOUR CHANCES OF WINNING. The EdgeDB x Vercel Hackathon (the “Contest”) is
-            sponsored by EdgeDB Inc., having an address of "TODO" (“EdgeDB”).
+            sponsored by EdgeDB Inc., having an address of 650 California Street 7th Floor, c/o EdgeDB Inc San Francisco, CA, 94108, USA (“EdgeDB”).
           </p>
 
           <b>ELIGIBILITY:</b>
@@ -84,8 +84,8 @@ export default function Page() {
             shall the EdgeDB be obligated to award any prizes other than the Prizes specified in these Official Rules. The
             Prizes are non-transferable. Winners shall be responsible and liable for all federal, state
             and local taxes on the value of the Prizes, and any related handling charges. To receive a complete
-            list of winners or a copy of the Official Rules, [within six (6) months] after the end of the Entry Period, send a
-            self-addressed stamped envelope to [Name of Contest Winner’s List], [ADDRESS].
+            list of winners or a copy of the Official Rules, within six (6) months after the end of the Entry Period, send a
+            self-addressed stamped envelope to EdgeDB Inc, 650 California Street 7th Floor, c/o EdgeDB Inc San Francisco, CA, 94108, USA.
           </p>
           <b>PRIZE SELECTION AND JUDGING CRITERIA:</b>
           <p className="mb-4">
