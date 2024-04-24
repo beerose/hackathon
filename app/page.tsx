@@ -5,7 +5,7 @@ import { auth } from "@/edgedb";
 import { classNames } from "@/src/utils";
 import Three from "@/components/index/env";
 import Link from "next/link";
-import { LeftHand, RightHand } from "@/components/index/Hands";
+import { LeftHand, RightHand } from "@/components/index/hands";
 import HackathonLogo from "@/components/hlogo";
 import { SigninError } from "@/components/SigninError";
 
