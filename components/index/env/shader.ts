@@ -67,7 +67,7 @@ float snoise(vec2 v) {
 void main() {
   vec2 uv = gl_FragCoord.xy / uResolution.xy;
 
-  float noise = max(0.0, snoise(vec2(uTime, uv.y * 0.02)) - 0.3) * uDistortion;
+  float noise = max(0.0, snoise(vec2(uTime / 2., uv.y * 0.02)) - 0.3) * uDistortion;
   noise += (snoise(vec2(uTime * 10.0 * uSpeed, uv.y * 0.02)) - 0.5) * uDistortion2;
 
   float rPos =  - noise * noise * 0.25;
