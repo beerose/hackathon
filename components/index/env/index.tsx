@@ -2,15 +2,18 @@
 
 import {useState, useEffect, useRef} from 'react';
 
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { PerformanceMonitor, StatsGl } from '@react-three/drei'
 import Environment from "./env";
 import {PatchedView} from "../view";
 import {useWebgl} from "../hasWebgl";
+import { TextureLoader } from 'three';
 
 function ThreeCore() {
   const nativeDpr = typeof window == 'undefined' ? 1 : window.devicePixelRatio;
   const maxDpr = Math.min(nativeDpr, 1.);
+
+  const codeTexture = useLoader(TextureLoader, '/3d/code.png');
 
   return <>
     <Canvas
@@ -26,7 +29,7 @@ function ThreeCore() {
           camera={{ fov: 20, near: 0.1, far: 1000, position: [0, 0, 25] }}
         >
 
-      <Environment lowPerf={false} />
+      <Environment lowPerf={false} codeTexture={codeTexture} />
       <PatchedView.Port />
 
       <CameraControls />

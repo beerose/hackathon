@@ -5,7 +5,7 @@
 body {
   font-family: 'EdgeDB', sans-serif;
   height: 100%;
-  background: linear-gradient(0deg, #38212f 100%, #202020 0%);
+  background: linear-gradient(180deg, #2d1724 20%, #150814 90%);
   overflow: auto;
   scroll-behavior: smooth;
 }

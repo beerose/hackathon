@@ -2,6 +2,7 @@
 const bgShader = () => /*glsl*/`precision highp float;
 
 uniform sampler2D uScene;
+uniform sampler2D uCodeTexture;
 uniform vec2 uResolution;
 uniform vec2 uMouse;
 uniform float uTime;
@@ -81,15 +82,22 @@ void main() {
   float g = texture2D(uScene, (uv + vec2(gPos, 0.)) * (1.0 + gOffset) - (gOffset / 2.0)).g;
   float b = texture2D(uScene, (uv + vec2(bPos, 0.)) * (1.0 + bOffset) - (bOffset / 2.0)).b;
 
+  vec4 bg = mix(
+    vec4(0.),
+    texture2D(
+      uCodeTexture,
+      gl_FragCoord.xy / max(uResolution.x, uResolution.y) +
+        vec2(-rPos / 10., -uScroll/2.)),
+    0.7
+  );
 
-  vec3 color = vec3(r, g, b);
-  color = mix(color, vec3(0.0), noise * 0.3);
+  float alpha = 1. - bg.a;
+  if (r + g + b > 0.) {
+    alpha = 0.95;
+  }
 
-  // if (floor(mod(color.y * 0.01, 2.0)) == 0.0) {
-  //   color *= 1.0 - (0.15 * noise);
-  // }
-
-  gl_FragColor = vec4(color, .0);
+  vec3 color = mix(bg.rgb * (1.-uScroll), vec3(r, g, b), alpha);
+  gl_FragColor = vec4(color, 0.01);
 }`;
 
 

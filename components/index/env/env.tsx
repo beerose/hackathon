@@ -11,6 +11,7 @@ import {
   NoBlending,
   Mesh,
   LinearToneMapping,
+  type Texture,
 } from 'three'
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
@@ -41,9 +42,10 @@ const getFullscreenTriangle = () => {
 
 type EnvironmentProps = {
   lowPerf: boolean
+  codeTexture: Texture
 }
 
-function Environment({lowPerf}: EnvironmentProps) {
+function Environment({lowPerf, codeTexture}: EnvironmentProps) {
   const {gl} = useThree();
 
   const frameNumber = useRef<number>(0);
@@ -55,19 +57,9 @@ function Environment({lowPerf}: EnvironmentProps) {
   const target = useRef<WebGLRenderTarget>();
 
   const calcScroll = () =>
-    document.documentElement.scrollTop / window.innerHeight;
+    document.body.scrollTop / window.innerHeight;
 
   useEffect(() => {
-    const onScroll = () => {
-      if (bgMaterial.current != null) {
-        const scrollOffset = calcScroll();
-        bgMaterial.current.uniforms.uScroll.value = scrollOffset;
-      }
-    };
-
-    window.removeEventListener('scroll', onScroll);
-    window.addEventListener('scroll', onScroll, {passive: true});
-
     const onResize = () => {
       const res = gl.getDrawingBufferSize(new Vector2());
 
@@ -83,7 +75,6 @@ function Environment({lowPerf}: EnvironmentProps) {
     window.addEventListener('resize', onResize, {passive: true});
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     }
   }, [bgMaterial.current]);
@@ -106,7 +97,7 @@ function Environment({lowPerf}: EnvironmentProps) {
         format: RGBAFormat,
         stencilBuffer: false,
         depthBuffer: true,
-        samples: (lowPerf || MAX_SHADERS <= 512) ? 0 : 3,
+        samples: (lowPerf || MAX_SHADERS <= 512) ? 0 : 0,
       }
     );
     _target.texture.colorSpace = SRGBColorSpace;
@@ -132,11 +123,12 @@ function Environment({lowPerf}: EnvironmentProps) {
         uScroll: { value: calcScroll() },
         uResolution: { value: resolution },
         uScene: { value: _target.texture },
+        uCodeTexture: { value: codeTexture },
         uOpacity: { value: 0 },
 
         uDistortion: { value: 0.6 },
         uDistortion2: { value: 0.05 },
-        uSpeed: { value: 0.2 },
+        uSpeed: { value: 0.1 },
         uRedOffset: { value: 7.0, },
         uGreenOffset: { value: 3.3, },
         uBlueOffset: { value: 3.0, },
@@ -190,6 +182,7 @@ function Environment({lowPerf}: EnvironmentProps) {
     gl.setRenderTarget(null);
     bgMaterial.current.uniforms.uScene.value = target.current.texture;
     bgMaterial.current.uniforms.uTime.value = clock.getElapsedTime();
+    bgMaterial.current.uniforms.uScroll.value = calcScroll();
     bgMaterial.current.uniforms.uOpacity.value = opacity;
     if (needPointer.current) {
       bgMaterial.current.uniforms.uMouse.value = pointer;
