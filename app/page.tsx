@@ -5,7 +5,7 @@ import { auth } from '@/edgedb'
 import { classNames } from '@/src/utils'
 import Three from '@/components/index/env'
 import Link from 'next/link'
-import {LeftHand, RightHand} from "@/components/index/hands"
+import {LeftHand, RightHand} from "@/components/index/Hands"
 import HackathonLogo from '@/components/hlogo'
 
 const timeline = [
@@ -95,7 +95,7 @@ export default async function Home() {
         <div>
           <HackathonLogo className="scale-75 md:scale-100"/>
           <div className="relative" style={{width: '0', height: '0', left: '-330px', top: '-280px'}}>
-            <div className="absolute z-0" style={{width: '490px', height: '280px',}}>
+            <div className="absolute z-0" style={{width: '510px', height: '290px',}}>
               <LeftHand />
             </div>
           </div>
@@ -121,7 +121,7 @@ export default async function Home() {
         />
 
         <div className="relative" style={{width: '0', height: '0', left: '360px', top: '-80px'}}>
-          <div className="absolute z-0" style={{width: '490px', height: '280px',}}>
+          <div className="absolute z-0" style={{width: '510px', height: '290px',}}>
             <RightHand />
           </div>
         </div>

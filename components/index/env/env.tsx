@@ -134,7 +134,7 @@ function Environment({lowPerf}: EnvironmentProps) {
         uScene: { value: _target.texture },
         uOpacity: { value: 0 },
 
-        uDistortion: { value: 0.3 },
+        uDistortion: { value: 0.6 },
         uDistortion2: { value: 0.05 },
         uSpeed: { value: 0.2 },
         uRedOffset: { value: 7.0, },
