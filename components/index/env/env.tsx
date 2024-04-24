@@ -53,7 +53,6 @@ function Environment({lowPerf, codeTexture}: EnvironmentProps) {
   const bgScene = useRef<Scene>();
   const bgMaterial = useRef<ShaderMaterial>();
   const currentDpr = useRef<number>(-1);
-  const needPointer = useRef<boolean>(false);
   const target = useRef<WebGLRenderTarget>();
 
   const calcScroll = () =>
@@ -166,7 +165,7 @@ function Environment({lowPerf, codeTexture}: EnvironmentProps) {
     gl.clear();
   }, 0);
 
-  useFrame(({gl, clock, pointer}) => {
+  useFrame(({gl, clock}) => {
     if (!target.current || !bgMaterial.current ||
         !bgCamera.current || !bgScene.current
     ) {
@@ -184,9 +183,6 @@ function Environment({lowPerf, codeTexture}: EnvironmentProps) {
     bgMaterial.current.uniforms.uTime.value = clock.getElapsedTime();
     bgMaterial.current.uniforms.uScroll.value = calcScroll();
     bgMaterial.current.uniforms.uOpacity.value = opacity;
-    if (needPointer.current) {
-      bgMaterial.current.uniforms.uMouse.value = pointer;
-    }
     gl.render(bgScene.current, bgCamera.current);
 
     // Besides fixing flickering, on relatively slow devices (iphone)
