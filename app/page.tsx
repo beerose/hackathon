@@ -110,22 +110,25 @@ export default async function Home() {
           </div>
         </div>
 
-        <h3 className="text-primary text-2xl font-bold mb-4 mt-6">Judges</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <h3 className="text-primary text-2xl font-bold mb-3 mt-10">Judges</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-5">
           <Judge
-            img="https://via.placeholder.com/80"
-            name="The judge"
-            title="CEO"
+            url="https://twitter.com/cyen"
+            img="/photos/christine.jpg"
+            name="Christine Yen"
+            title="Honeycomb.io, CEO"
           />
           <Judge
-            img="https://via.placeholder.com/80"
-            name="The Browne"
-            title="CEO ping.gg"
-          />
-          <Judge
-            img="https://via.placeholder.com/80"
+          url="https://twitter.com/rauchg"
+            img="/photos/guillermo.jpg"
             name="Guillermo Rauch"
-            title="CEO Vercel"
+            title="Vercel, CEO"
+          />
+          <Judge
+            url="https://twitter.com/t3dotgg"
+            img="/photos/theo.jpg"
+            name="Theo Browne"
+            title="T3, CEO"
           />
 
           <div
