@@ -97,7 +97,7 @@ void main() {
   }
 
   vec3 color = mix(bg.rgb * (1.-uScroll), vec3(r, g, b), alpha);
-  gl_FragColor = vec4(color, 0.01);
+  gl_FragColor = vec4(color * uOpacity, 0.01);
 }`;
 
 
