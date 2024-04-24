@@ -8,7 +8,7 @@ const timeline = [
   {
     id: 1,
     name: 'Kick off event',
-    date: '13/04/2024 9 am PST',
+    date: '26/04/2024 9 am PST',
   },
   {
     id: 2,
