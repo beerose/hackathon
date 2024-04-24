@@ -26,10 +26,13 @@ export function Button({ title, variant, ...rest }: ButtonProps | AnchorProps) {
       className={classNames(
         'relative py-2 px-6 w-full transition-all duration-300 ease-in-out text-bold',
         variant === 'primary'
-          ? 'bg-primary text-black'
-          : 'bg-transparent text-white border-2 border-textPrimary/20 hover:bg-primary hover:border-primary hover:text-black',
+          ? 'bg-primary hover:bg-primaryHover text-black'
+          : 'bg-secondary text-white border-textPrimary/20 hover:bg-primary hover:border-primary hover:text-black',
         'rounded-[1px] flex justify-between items-center space-x-4 text-left'
       )}
+      style={{
+        mask: 'linear-gradient(-45deg,#0000 14px,#000 0 calc(100% - 14px),#0000 0)'
+      }}
       {...(rest as any)}
     >
       {rest.back && (

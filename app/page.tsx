@@ -151,7 +151,7 @@ export default async function Home() {
             </Link>
           ) : (
             <Link href={auth.getBuiltinUIUrl()}>
-              <Button title="Register / log-in" variant="primary" />
+              <Button title="Register / log-in" variant="primary" angled/>
             </Link>
           )}
         </div>
@@ -290,7 +290,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-4 flex flex-col">
               <a href="https://discord.gg/umUueND6ag">
-                <Button title="Join Discord" variant="secondary" />
+                <Button angled title="Join Discord" variant="secondary" />
               </a>
               <Link href="/legal">
                 <Button title="Read the rules" variant="secondary" />
