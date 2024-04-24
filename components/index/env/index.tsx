@@ -83,8 +83,9 @@ function CameraControls() {
 
   useFrame(({camera}) => {
     const scroll = Math.min(document.body.scrollTop / height.current, 1.);
-    camera.position.x = posX.current * 5.;
-    camera.position.y = -posY.current * 5. + scroll * 20;
+    camera.position.x = posX.current * 10.;
+    camera.position.y = -posY.current * 10. + scroll * 40;
+    camera.position.z = 25 + scroll * 5;
     camera.lookAt(0, 0, 0);
   });
 

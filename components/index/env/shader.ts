@@ -82,14 +82,12 @@ void main() {
   float g = texture2D(uScene, (uv + vec2(gPos, 0.)) * (1.0 + gOffset) - (gOffset / 2.0)).g;
   float b = texture2D(uScene, (uv + vec2(bPos, 0.)) * (1.0 + bOffset) - (bOffset / 2.0)).b;
 
-  vec4 bg = mix(
-    vec4(0.),
-    texture2D(
-      uCodeTexture,
-      gl_FragCoord.xy / max(uResolution.x, uResolution.y) +
-        vec2(-rPos / 10., -uScroll/2.)),
-    0.7
-  );
+  vec2 bguv = gl_FragCoord.xy / max(uResolution.x, uResolution.y);
+  float r_b = texture2D(uCodeTexture, (bguv + vec2(rPos, 0.)) * (1.0 + rOffset) - (rOffset / 2.0)).r;
+  float g_b = texture2D(uCodeTexture, (bguv + vec2(gPos, 0.)) * (1.0 + gOffset) - (gOffset / 2.0)).g;
+  float b_b = texture2D(uCodeTexture, (bguv + vec2(bPos, 0.)) * (1.0 + bOffset) - (bOffset / 2.0)).b;
+
+  vec4 bg = vec4(r_b, g_b, b_b, .2);
 
   float alpha = 1. - bg.a;
   if (r + g + b > 0.) {
@@ -97,6 +95,11 @@ void main() {
   }
 
   vec3 color = mix(bg.rgb * (1.-uScroll), vec3(r, g, b), alpha);
+
+  if (floor(mod(gl_FragCoord.y * 0.25, 2.0)) == 0.0) {
+    color *= 1.0 - (0.4 * noise);
+  }
+
   gl_FragColor = vec4(color * uOpacity, 0.01);
 }`;
 
