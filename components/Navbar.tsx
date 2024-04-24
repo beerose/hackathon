@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Resources', href: '/resources' },
   { name: 'Project Gallery', href: '/gallery' },
-  { name: 'Legal Info', href: '/legal' },
+  // { name: 'Legal Info', href: '/legal' },
 ]
 
 interface NavbarProps {
