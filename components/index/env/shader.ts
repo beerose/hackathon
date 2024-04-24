@@ -18,6 +18,8 @@ uniform float uDistortion;
 uniform float uDistortion2;
 uniform float uSpeed;
 
+#define TAU 6.28318530718
+
 vec3 mod289(vec3 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0;
 }
@@ -67,12 +69,19 @@ float snoise(vec2 v) {
 void main() {
   vec2 uv = gl_FragCoord.xy / uResolution.xy;
 
-  float noise = max(0.0, snoise(vec2(uTime / 2., uv.y * 0.02)) - 0.3) * uDistortion;
-  noise += (snoise(vec2(uTime * 10.0 * uSpeed, uv.y * 0.02)) - 0.5) * uDistortion2;
+  float noise = max(0.0, snoise(vec2(uTime, uv.y * 0.02)) - 0.3) * uDistortion;
+  noise += (snoise(vec2(uTime * 1.0 * uSpeed, uv.y * 0.02)) - 0.5) * uDistortion2;
 
-  float rPos =  - noise * noise * 0.25;
-  float gPos =  - noise * noise * 0.11;
-  float bPos =  - noise * noise * 0.01;
+  float x = 1.;
+  if (floor(mod((gl_FragCoord.y + sin(mod(uTime, TAU)) * 100.) * 0.01, 3.0)) == 0.0) {
+    x = 2.5;
+    // gl_FragColor = vec4(0.7, 0., 0., 0.);
+    // return;
+  }
+
+  float rPos =  - noise * noise * 0.25 * x;
+  float gPos =  - noise * noise * 0.11 * x;
+  float bPos =  - noise * noise * 0.01 * x;
 
   float rOffset = 0.001 * uRedOffset * uIntensity;
   float gOffset = 0.001 * uGreenOffset * uIntensity;
