@@ -14,11 +14,18 @@ const navigation = [
 ]
 
 interface NavbarProps {
-  isSignedIn: boolean
-  loginURL: string
+  isSignedIn: boolean;
+  loginURL: string;
+  signoutURL: string;
 }
-export default function Navbar({ isSignedIn, loginURL }: NavbarProps) {
-  const pathname = usePathname()
+export default function Navbar({
+  isSignedIn,
+  loginURL,
+  signoutURL,
+}: NavbarProps) {
+  const pathname = usePathname();
+
+  const isProfilePage = pathname === "/profile";
 
   return (
     <div className="w-full">
@@ -44,8 +51,12 @@ export default function Navbar({ isSignedIn, loginURL }: NavbarProps) {
         </div>
         <div className="flex items-center bg-black/70 backdrop-blur-sm rounded-lg rounded-l-none gap-x-2 py-2 px-5 font-bold text-white hover:text-primary cursor-pointer transition-all duration-200">
           <div className="rounded-[4px] border-[3px] border-primary w-5 h-5" />
-          <Link href={isSignedIn ? '/profile' : loginURL}>
-            {isSignedIn ? 'profile' : 'Log in'}
+          <Link
+            href={
+              isSignedIn ? (isProfilePage ? signoutURL : "/profile") : loginURL
+            }
+          >
+            {isSignedIn ? (isProfilePage ? "Log out" : "profile") : "Log in"}
           </Link>
         </div>
       </div>

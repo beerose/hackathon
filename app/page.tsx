@@ -7,6 +7,7 @@ import Three from '@/components/index/env'
 import Link from 'next/link'
 import {LeftHand, RightHand} from "@/components/index/Hands"
 import HackathonLogo from '@/components/hlogo'
+import { SigninError } from "@/components/SigninError";
 
 const timeline = [
   {
@@ -129,7 +130,6 @@ export default async function Home() {
 
       <div className="mt-10">
         {signedIn ? (
-          <Link href="dashboard">
             <Button
               title="Profile"
               variant="primary"
@@ -149,6 +149,7 @@ export default async function Home() {
         create, learn, and connect. Showcase your talents, acquire new skills,
         and meet fellow developers.
       </p>
+            <Link href="/profile">
 
       <div className="mt-20 flex items-center flex-col">
         <h3 className="text-primary text-5xl font-bold mb-14 text-center">
@@ -375,4 +376,5 @@ export default async function Home() {
       </div>
     </div>
   </>)
+      <SigninError />
 }
