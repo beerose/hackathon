@@ -193,7 +193,7 @@ export default async function Home() {
                   You will have <b>two weeks</b> to complete your project and
                   submit:
                 </p>
-                <ul className="list-disc list-inside">
+                <ul className="list-disc list-inside text-textBase">
                   <li>
                     a <span className="text-primary">repo URL</span>,
                   </li>
