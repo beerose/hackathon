@@ -1,6 +1,6 @@
-import ExampleApps from '@/components/ExampleApps'
-import Projects from '@/components/Projects'
-import Resource, { resources } from '@/components/Resource'
+import ExampleApps from "@/components/ExampleApps";
+import Projects from "@/components/Projects";
+import Resource, { resources } from "@/components/Resource";
 import { auth } from "@/edgedb";
 
 export default async function Profile() {
@@ -21,10 +21,7 @@ export default async function Profile() {
         <div className="hidden md:flex col-span-1 flex-col space-y-4 flex-wrap">
           <h2 className="text-3xl text-primary">Resources</h2>
           {resources.map((resource) => (
-            <Resource
-              key={resource.title}
-              resource={resource}
-            />
+            <Resource key={resource.title} resource={resource} />
           ))}
 
           <h2 className="mt-10 text-3xl text-primary">Example apps</h2>
@@ -36,5 +33,5 @@ export default async function Profile() {
         </div>
       </div>
     </div>
-  )
+  );
 }

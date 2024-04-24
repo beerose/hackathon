@@ -1,17 +1,17 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
+import Link from "next/link";
 
-import { Disclosure } from '@headlessui/react'
-import { classNames } from '@/src/utils'
-import { usePathname } from 'next/navigation'
+import { Disclosure } from "@headlessui/react";
+import { classNames } from "@/src/utils";
+import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Resources', href: '/resources' },
-  { name: 'Project Gallery', href: '/gallery' },
+  { name: "Home", href: "/" },
+  { name: "Resources", href: "/resources" },
+  { name: "Project Gallery", href: "/gallery" },
   // { name: 'Legal Info', href: '/legal' },
-]
+];
 
 interface NavbarProps {
   isSignedIn: boolean;
@@ -32,15 +32,12 @@ export default function Navbar({
       <div className="mt-8 space-x-1 text-xl lg:text-2xl hidden md:flex justify-center">
         <div className="bg-black/70 backdrop-blur-sm rounded-lg rounded-r-none space-x-4 py-2 px-5 font-bold text-white flex items-center">
           {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-            >
+            <Link key={item.name} href={item.href}>
               <span className="hover:text-primary cursor-pointer transition-all duration-200">
                 <span className="text-primary">/</span>
                 <span
                   className={
-                    pathname === item.href ? 'text-primary' : 'text-white'
+                    pathname === item.href ? "text-primary" : "text-white"
                   }
                 >
                   {item.name}
@@ -60,16 +57,13 @@ export default function Navbar({
           </Link>
         </div>
       </div>
-      <Disclosure
-        as="nav"
-        className="w-full md:hidden relative"
-      >
+      <Disclosure as="nav" className="w-full md:hidden relative">
         {({ open }) => (
           <>
             <div
               className={classNames(
-                'mx-auto px-8 py-4',
-                open ? 'bg-black' : ''
+                "mx-auto px-8 py-4",
+                open ? "bg-black" : ""
               )}
             >
               <div className="flex h-16 justify-between">
@@ -90,21 +84,17 @@ export default function Navbar({
             <Disclosure.Panel className="md:hidden bg-black w-full absolute">
               <div className="pb-3 pt-2">
                 {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="w-full"
-                  >
+                  <Link key={item.name} href={item.href} className="w-full">
                     <Disclosure.Button
                       key={item.name}
                       as="span"
                       className={classNames(
                         pathname === item.href
-                          ? 'bg-primary text-black'
-                          : 'border-transparent text-gray-400 hover:bg-primary hover:text-black',
-                        'block py-4 pl-5 text-xl font-bold w-full'
+                          ? "bg-primary text-black"
+                          : "border-transparent text-gray-400 hover:bg-primary hover:text-black",
+                        "block py-4 pl-5 text-xl font-bold w-full"
                       )}
-                      aria-current={pathname === item.href ? 'page' : undefined}
+                      aria-current={pathname === item.href ? "page" : undefined}
                     >
                       <span className="cursor-pointer transition-all duration-200 w-full">
                         <span className="text-primary">/</span>
@@ -119,7 +109,7 @@ export default function Navbar({
         )}
       </Disclosure>
     </div>
-  )
+  );
 }
 
 const IconBurger = () => (
@@ -130,29 +120,11 @@ const IconBurger = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect
-      y="2"
-      width="24"
-      height="4"
-      rx="2"
-      fill="#CCCCCC"
-    />
-    <rect
-      y="10"
-      width="24"
-      height="4"
-      rx="2"
-      fill="#CCCCCC"
-    />
-    <rect
-      y="18"
-      width="24"
-      height="4"
-      rx="2"
-      fill="#CCCCCC"
-    />
+    <rect y="2" width="24" height="4" rx="2" fill="#CCCCCC" />
+    <rect y="10" width="24" height="4" rx="2" fill="#CCCCCC" />
+    <rect y="18" width="24" height="4" rx="2" fill="#CCCCCC" />
   </svg>
-)
+);
 
 export const IconX = () => (
   <svg
@@ -180,4 +152,4 @@ export const IconX = () => (
       fill="#B3B3B3"
     />
   </svg>
-)
+);
