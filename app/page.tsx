@@ -17,7 +17,7 @@ const timeline = [
   },
   {
     id: 2,
-    name: "Development days",
+    name: "Development dssays",
     date: "26/04/2024  — 29/04/2024",
   },
   {
